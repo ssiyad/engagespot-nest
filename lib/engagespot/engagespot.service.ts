@@ -21,10 +21,33 @@ export class EngagespotService {
     // Meanwhile, if you have a workaround, such as assigning const self = this and then accessing self.prop,
     // or the equivalent accessing of (this as this).prop, then I guess you should use it.
     // - https://stackoverflow.com/a/51678644/11143333
+
     /**
      *
      * @param title
      * @returns notification instance
      */
     createNotification = (this as this).CLIENT.createNotification;
+
+    /**
+     * returns a sha256 encoded string used to further ensure security. read more at
+     * https://documentation.engagespot.co/docs/HMAC-authentication/enabling-HMAC-authentication
+     * @param userId
+     * @returns encoded string
+     */
+    genHmac = (this as this).CLIENT.genHmac;
+
+    /**
+     * connect/register a user with Engagespot
+     * @param userId like 'hello@example.com'
+     * @returns API response
+     */
+    connect = (this as this).CLIENT.connect;
+
+    /**
+     * send an already prepared notification
+     * @param notification body
+     * @returns API response
+     */
+    sendNotification = (this as this).CLIENT.sendNotification;
 }
