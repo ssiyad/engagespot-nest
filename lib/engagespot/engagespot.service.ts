@@ -13,25 +13,19 @@ export class EngagespotService {
             options.API_SECRET,
             options.config,
         );
-    }
 
-    // This may well be a design limitation in TypeScript, if not a full-fledged bug. The fact is that
-    // automated control flow analysis is hard to do "right". Since it's generally impossible for the
-    // compiler to figure out exactly which states are possible for each variable at each point in a program,
-    // it has to use heuristics, which tend to result both in false negatives (uncaught bugs) and false
-    // positives (caught non-bugs). This seems like a false positive to me, since the asynchronous function
-    // is definitely invoked after this.prop has been set. A similar issue has been raised and addressed
-    // before, with synchronous immediately-invoked function expressions.
-    // Meanwhile, if you have a workaround, such as assigning const self = this and then accessing self.prop,
-    // or the equivalent accessing of (this as this).prop, then I guess you should use it.
-    // - https://stackoverflow.com/a/51678644/11143333
+        this.createNotification = this.CLIENT.createNotification;
+        this.genHmac = this.CLIENT.genHmac;
+        this.connect = this.CLIENT.connect;
+        this.sendNotification = this.CLIENT.sendNotification;
+    }
 
     /**
      *
      * @param title
      * @returns notification instance
      */
-    createNotification = (this as this).CLIENT.createNotification;
+    createNotification;
 
     /**
      * returns a sha256 encoded string used to further ensure security. read more at
@@ -39,19 +33,19 @@ export class EngagespotService {
      * @param userId
      * @returns encoded string
      */
-    genHmac = (this as this).CLIENT.genHmac;
+    genHmac;
 
     /**
      * connect/register a user with Engagespot
      * @param userId like 'hello@example.com'
      * @returns API response
      */
-    connect = (this as this).CLIENT.connect;
+    connect;
 
     /**
      * send an already prepared notification
      * @param notification body
      * @returns API response
      */
-    sendNotification = (this as this).CLIENT.sendNotification;
+    sendNotification;
 }
