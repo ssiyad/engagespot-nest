@@ -8,7 +8,11 @@ export class EngagespotService {
     private CLIENT: Engagespot;
 
     constructor(@Inject(CONFIG_OPTIONS) options: EngagespotOptions) {
-        this.CLIENT = new Engagespot(options.API_KEY, options.API_SECRET);
+        this.CLIENT = new Engagespot(
+            options.API_KEY,
+            options.API_SECRET,
+            options.config,
+        );
     }
 
     // This may well be a design limitation in TypeScript, if not a full-fledged bug. The fact is that
