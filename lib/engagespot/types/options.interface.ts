@@ -1,4 +1,4 @@
-import { EngagespotConfig } from 'engagespot-node/dist/engagespot/types/config.interface';
+import { EngagespotConfig } from 'engagespot-node';
 
 export interface EngagespotOptions {
     API_KEY: string;
